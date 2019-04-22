@@ -1,0 +1,34 @@
+{
+  "name": "rpg-server",
+  "version": "1.0.0",
+  "description": "An API that generates a list of random phone numbers",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon --exec babel-node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stylll/rpg-server.git"
+  },
+  "author": "Stephen Aribaba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stylll/rpg-server/issues"
+  },
+  "homepage": "https://github.com/Stylll/rpg-server#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.11",
+    "open": "^6.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3"
+  }
+}
