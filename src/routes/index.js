@@ -11,4 +11,6 @@ router.get('/', (request, response) => {
 
 router.post('/numbers', PhoneController.generateRandomNumber);
 
+router.get('/numbers', PhoneController.getRandomNumbers);
+
 export default router;
