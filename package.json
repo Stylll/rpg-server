@@ -30,7 +30,8 @@
     "express": "^4.16.4",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.11",
-    "open": "^6.1.0"
+    "open": "^6.1.0",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
