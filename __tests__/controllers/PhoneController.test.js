@@ -3,7 +3,7 @@ import app from '../../src/app';
 import PhoneController from '../../src/controllers/PhoneController';
 
 // Mocking the write to file method in the testing environment
-PhoneController.saveToFile = () => {};
+// PhoneController.saveToFile = () => {};
 
 describe('Test suite for PhoneController', () => {
   it('should return APP welcome message', (done) => {
@@ -40,6 +40,38 @@ describe('Test suite for PhoneController', () => {
           expect(phoneNumbers.length).toBe(10000);
           expect(minimumPhoneNumber).toBe(phoneNumbers[0]);
           expect(maximumPhoneNumber).toBe(phoneNumbers[phoneNumbers.length - 1]);
+          done();
+        });
+    });
+  });
+
+  describe('Get Random Phone Numbers from file - GET', () => {
+    it('should return a list of phone numbers', (done) => {
+      request(app)
+        .get('/api/v1/numbers')
+        .send({})
+        .end((error, response) => {
+          const { phoneNumbers, minimumPhoneNumber, maximumPhoneNumber } = response.body.data;
+          expect(response.status).toBe(200);
+          expect(response.body.message).toBe('10000 phone numbers successfully retrieved');
+          expect(phoneNumbers.length).toBe(10000);
+          expect(minimumPhoneNumber).toBe(phoneNumbers[0]);
+          expect(maximumPhoneNumber).toBe(phoneNumbers[phoneNumbers.length - 1]);
+          done();
+        });
+    });
+
+    it('should return a list of phone numbers in descending order', (done) => {
+      request(app)
+        .get('/api/v1/numbers?order=desc')
+        .send({})
+        .end((error, response) => {
+          const { phoneNumbers, minimumPhoneNumber, maximumPhoneNumber } = response.body.data;
+          expect(response.status).toBe(200);
+          expect(response.body.message).toBe('10000 phone numbers successfully retrieved');
+          expect(phoneNumbers.length).toBe(10000);
+          expect(minimumPhoneNumber).toBe(phoneNumbers[phoneNumbers.length - 1]);
+          expect(maximumPhoneNumber).toBe(phoneNumbers[0]);
           done();
         });
     });

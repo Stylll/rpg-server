@@ -27,11 +27,34 @@ export default class PhoneController {
     });
   }
 
+  static getRandomNumbers(request, response) {
+    const order = request.query.order || 'asc';
+    const phoneNumbers = PhoneController.getFromFile();
+    const minimumPhoneNumber = phoneNumbers[0];
+    const maximumPhoneNumber = phoneNumbers[phoneNumbers.length - 1];
+    if (order.toLowerCase() === 'desc') {
+      phoneNumbers.sort((current, next) => (next - current));
+    }
+    response.status(200).json({
+      message: `${phoneNumbers.length} phone numbers successfully retrieved`,
+      data: {
+        phoneNumbers,
+        minimumPhoneNumber,
+        maximumPhoneNumber,
+      },
+    });
+  }
+
   static getRandomNumber(minimum, maximum) {
     return Math.round(Math.random() * (maximum - minimum) + minimum);
   }
 
   static saveToFile(phoneNumbers) {
     fs.writeFileSync('datastore.txt', phoneNumbers);
+  }
+
+  static getFromFile() {
+    const phoneNumbers = fs.readFileSync('datastore.txt').toString().split(',');
+    return phoneNumbers;
   }
 }
